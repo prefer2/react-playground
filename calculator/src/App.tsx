@@ -11,6 +11,7 @@ import {
 import { ALERT_MESSAGE } from './constants/alert';
 
 import './index.css';
+import { isOperator } from './utils';
 
 function App() {
   const [total, setTotal] = useState<string[]>([]);
@@ -23,7 +24,7 @@ function App() {
     const lastInput = total[total.length - 1];
 
     // 마지막 입력이 숫자였으면, 기존 숫자에 이어붙인다
-    if (!Object.values(OPERATORS).includes(lastInput)) {
+    if (!isOperator(lastInput)) {
       const lastNumber = +lastInput;
 
       if (lastInput.length >= MAX_DIGIT_PLACE) {
@@ -48,7 +49,7 @@ function App() {
 
     const lastInput = total[total.length - 1];
 
-    if (Object.values(OPERATORS).includes(lastInput)) {
+    if (isOperator(lastInput)) {
       return window.alert(ALERT_MESSAGE.NUMBER_FIRST);
     }
 
