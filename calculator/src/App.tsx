@@ -3,6 +3,7 @@ import Digit from './components/Digit';
 import Operator from './components/Operator';
 import {
   CLEAR_NUMBER,
+  DECIMAL_POINT_COUNT,
   DIGITS,
   MAX_CALCULATE_NUMBER,
   MAX_DIGIT_PLACE,
@@ -63,7 +64,11 @@ function App() {
 
       switch (total[1]) {
         case OPERATORS.DIVIDE:
-          setTotal([(+(firstNumber / secondNumber).toFixed(3)).toString()]);
+          setTotal([
+            (+(firstNumber / secondNumber).toFixed(
+              DECIMAL_POINT_COUNT,
+            )).toString(),
+          ]);
           break;
         case OPERATORS.MULTIPLY:
           setTotal([(firstNumber * secondNumber).toString()]);

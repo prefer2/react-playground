@@ -12,4 +12,6 @@ export const MAX_CALCULATE_NUMBER = 2;
 
 export const MAX_DIGIT_PLACE = 3;
 
-export const CLEAR_NUMBER = 0;
+export const CLEAR_NUMBER = '0';
+
+export const DECIMAL_POINT_COUNT = 3;
