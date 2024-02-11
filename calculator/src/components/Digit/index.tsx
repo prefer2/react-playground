@@ -1,11 +1,14 @@
 interface DigitProps {
   digitNumber: number;
-  onClick: () => void;
+  onClick: (digit: number) => void;
 }
 
 const Digit = ({ digitNumber, onClick }: DigitProps) => {
   return (
-    <button className={`${digitNumber === 0 ? 'wide' : ''}`} onClick={onClick}>
+    <button
+      className={`${digitNumber === 0 ? 'wide' : ''}`}
+      onClick={() => onClick(digitNumber)}
+    >
       {digitNumber}
     </button>
   );
