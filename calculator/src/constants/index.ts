@@ -15,3 +15,5 @@ export const MAX_DIGIT_PLACE = 3;
 export const CLEAR_NUMBER = '0';
 
 export const DECIMAL_POINT_COUNT = 3;
+
+export const CALCULATED_ERROR = '오류';

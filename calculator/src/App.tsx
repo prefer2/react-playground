@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Digit from './components/Digit';
 import Operator from './components/Operator';
 import {
+  CALCULATED_ERROR,
   CLEAR_NUMBER,
   DECIMAL_POINT_COUNT,
   DIGITS,
@@ -23,6 +24,10 @@ function App() {
     }
 
     const lastInput = total[total.length - 1];
+
+    if (lastInput === CALCULATED_ERROR) {
+      return setTotal([digit.toString()]);
+    }
 
     // 마지막 입력이 숫자였으면, 기존 숫자에 이어붙인다
     if (!isOperator(lastInput)) {
@@ -50,7 +55,7 @@ function App() {
 
     const lastInput = total[total.length - 1];
 
-    if (isOperator(lastInput)) {
+    if (isOperator(lastInput) || lastInput === CALCULATED_ERROR) {
       return window.alert(ALERT_MESSAGE.NUMBER_FIRST);
     }
 
@@ -64,11 +69,15 @@ function App() {
 
       switch (total[1]) {
         case OPERATORS.DIVIDE:
-          setTotal([
-            (+(firstNumber / secondNumber).toFixed(
-              DECIMAL_POINT_COUNT,
-            )).toString(),
-          ]);
+          if (secondNumber === 0) {
+            return setTotal([CALCULATED_ERROR]);
+          }
+
+          const calculatedNumber = +(firstNumber / secondNumber).toFixed(
+            DECIMAL_POINT_COUNT,
+          );
+
+          setTotal([calculatedNumber.toString()]);
           break;
         case OPERATORS.MULTIPLY:
           setTotal([(firstNumber * secondNumber).toString()]);
