@@ -4,7 +4,6 @@ import Operator from './components/Operator';
 import {
   CALCULATED_ERROR,
   CLEAR_NUMBER,
-  DECIMAL_POINT_COUNT,
   DIGITS,
   MAX_CALCULATE_NUMBER,
   MAX_DIGIT_PLACE,
@@ -73,9 +72,7 @@ function App() {
             return setTotal([CALCULATED_ERROR]);
           }
 
-          const calculatedNumber = +(firstNumber / secondNumber).toFixed(
-            DECIMAL_POINT_COUNT,
-          );
+          const calculatedNumber = Math.floor(firstNumber / secondNumber);
 
           setTotal([calculatedNumber.toString()]);
           break;
