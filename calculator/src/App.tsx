@@ -8,6 +8,7 @@ import {
   MAX_DIGIT_PLACE,
   OPERATORS,
 } from './constants';
+import { ALERT_MESSAGE } from './constants/alert';
 
 import './index.css';
 
@@ -26,9 +27,7 @@ function App() {
       const lastNumber = +lastInput;
 
       if (lastInput.length >= MAX_DIGIT_PLACE) {
-        return window.alert(
-          `${MAX_DIGIT_PLACE}자리의 숫자만 입력이 가능합니다`,
-        );
+        return window.alert(ALERT_MESSAGE.MAX_DIGIT_COUNT);
       }
 
       const newNumber = lastNumber * 10 + digit;
@@ -44,19 +43,17 @@ function App() {
 
   const handleOperatorClick = (operator: string) => {
     if (total.length === 0) {
-      return window.alert('초기 입력은 숫자만 가능합니다');
+      return window.alert(ALERT_MESSAGE.NUMBER_FIRST);
     }
 
     const lastInput = total[total.length - 1];
 
     if (Object.values(OPERATORS).includes(lastInput)) {
-      return window.alert('숫자를 먼저 입력한 후 연산자를 입력해주세요');
+      return window.alert(ALERT_MESSAGE.NUMBER_FIRST);
     }
 
     if (total.length > MAX_CALCULATE_NUMBER + 1) {
-      return window.alert(
-        `${MAX_CALCULATE_NUMBER + 1}개의 숫자에 대한 연산만 가능합니다`,
-      );
+      return window.alert(ALERT_MESSAGE.MAX_OPERATOR_COUNT);
     }
 
     if (operator === OPERATORS.EQUAL) {
